@@ -1,0 +1,19 @@
+Equipa: Porto
+2
+PFerreira
+FCP
+25
+1.87
+
+1
+Baia
+FCP
+32
+1.95
+
+10
+DERLEI
+FCP
+27
+1.78
+

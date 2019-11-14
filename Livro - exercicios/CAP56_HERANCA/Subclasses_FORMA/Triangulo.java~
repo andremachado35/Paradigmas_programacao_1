@@ -1,0 +1,26 @@
+
+/**
+ * Write a description of class Triangulo here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+
+ public class Triangulo extends Forma {
+   // variáveis de instância
+   private double base, altura;
+   // construtores
+   public Triangulo() { base=0.0; altura=0.0; }
+   public Triangulo(double b, double a) { 
+       base =b; altura = a; 
+   }
+   // métodos de instância
+   public double area() { return base*altura/2; }
+   public double perimetro() { 
+      return base+altura+this.hipotenusa(); }
+   public double base() { return base; }
+   public double altura() { return altura; }
+   public double hipotenusa() {
+ return Math.sqrt(Math.pow(base, 2.0) + Math.pow(altura, 2.0)) ; 
+   }
+ }

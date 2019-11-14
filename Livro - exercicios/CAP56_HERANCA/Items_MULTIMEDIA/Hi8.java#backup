@@ -1,0 +1,26 @@
+
+/**
+ * Write a description of class Hi8 here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+	public class Hi8 {
+		//
+		private int minutos;
+		private double ocupacao;
+		private int gravacoes;
+		// construtores
+		public Hi8(String titulo, String data, String obs,
+					    int min, double ocup, int gravc) {
+			super(titulo, data, obs); // super ??
+			minutos = min; ocupacao = ocup; gravacoes = gravc;
+        }
+		//
+		public int getMin() { return minutos; }
+		public double getOcup() { return ocupacao; }
+		public int getGrava() { return gravacoes; }
+		public double duracao() {
+		    return minutos*(ocupacao/100);
+	    }
+	}

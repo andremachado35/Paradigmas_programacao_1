@@ -1,0 +1,94 @@
+import java.util.*;
+import java.io.*;
+
+/**
+ * Classe LivroElectronico
+ * 
+ * Uma implementação de um LIVRO usando duas stacks.
+ * A stack esquerda representa as páginas já lidas.
+ * A da direita representa as páginas a ler.
+ * Uma página é apenas uma String, não interessando se
+ * tem frente e verso ou apenas frente, dado que isso
+ * são formatos.
+ * 
+ * @author PPIV
+ * @version 06-2004
+ */
+public class LivroElectronico implements Serializable {
+
+	// Variáveis de Instancia
+	private Stack esquerda;
+	private Stack direita;
+
+	/**
+	 * Construtor de LivroElectronico
+	 */
+	public LivroElectronico() {
+		esquerda = new Stack();
+		direita = new Stack();
+	}
+
+	/**
+	 * Insere página no livro
+	 * 
+	 * @param  pagina String
+	 * @return     the sum of x and y 
+	 */
+	public void inserePagina(String pagina) {
+	    direita.push(pagina);
+	}
+	
+    /**
+	 * Devolve a página actual, se existir
+	 */
+	public String paginaActual() throws PagNaoExisteExc {
+	    if (direita.empty()) throw new PagNaoExisteExc();
+	    else return (String) direita.top();
+	}
+	
+    /**
+	 * Desfolha a página actual, se existir
+	 */
+	public void desfolha() throws PagNaoExisteExc {
+	    if (direita.empty()) throw new PagNaoExisteExc();
+	    else {
+	          esquerda.push(direita.top());
+	          direita.pop();
+	       }
+	}
+	
+    /**
+	 * Desfolha N páginas se possível, até não haver mais
+	 */
+	public void desfolhaN(int n) {
+	    while(!direita.empty() && n > 0) {
+	       esquerda.push(direita.top());
+	       direita.pop(); n--;
+	    }
+	}
+
+     /**
+	 * Passa para um ArrayList as páginas lidas (esquerda).
+	 * Nota: O Livro não pode ser destruído !!
+	 */
+	public ArrayList lidas() {
+	    Stack lidas = esquerda.clone();  // stack auxiliar
+	    ArrayList pagLidas = new ArrayList(lidas.size());
+	    while(!lidas.empty()) {
+	       pagLidas.put(lidas.top(), lidas.size()-1);
+	       lidas.pop();
+	    }
+	}
+	
+	    
+	    
+	    while(!direita.empty() && n > 0) {
+	       esquerda.push(direita.top());
+	       direita.pop(); n--;
+	    }
+	}
+	
+		
+	
+	
+}

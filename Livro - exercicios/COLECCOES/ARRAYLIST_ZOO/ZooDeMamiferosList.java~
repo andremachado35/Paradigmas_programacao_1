@@ -1,0 +1,36 @@
+
+/**
+ * ZooDeMamiferos é uma lista descritiva dos vários
+ * mamíferos de um jardim zoológico.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+
+public class ZooDeMamiferosList {
+
+	// Variável de Instância 
+	
+	private ArrayList<? extends Mamifero> mamZoo = new ArrayList();
+
+	/**
+	 * Constructor for objects of class ZooDeMamiferos
+	 */
+	public ZooDeMamiferos()
+	{
+		// initialise instance variables
+		x = 0;
+	}
+
+	/**
+	 * An example of a method - replace this comment with your own
+	 * 
+	 * @param  y   a sample parameter for a method
+	 * @return     the sum of x and y 
+	 */
+	public int sampleMethod(int y)
+	{
+		// put your code here
+		return x + y;
+	}
+}

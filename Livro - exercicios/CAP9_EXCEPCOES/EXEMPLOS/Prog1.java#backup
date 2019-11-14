@@ -1,0 +1,16 @@
+
+/**
+ * Write a description of class Prog1 here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+import java.util.Scanner;
+public class Prog1 {
+  public static void main(String[] args) {
+      System.out.print("Frase: ");
+      Scanner input = new Scanner(System.in);
+      String txt = input.next();
+      System.out.println(txt);
+	}
+}

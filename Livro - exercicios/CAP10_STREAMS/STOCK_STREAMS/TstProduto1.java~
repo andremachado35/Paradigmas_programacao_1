@@ -1,0 +1,42 @@
+ 
+
+    import java.io.*;
+    import java.util.*;
+    import java.lang.Math.random;
+    public class TstProduto1 {
+    // 
+    public static void main(String args[]) {
+    final int MAXFICHAS = 300000;
+
+    // Componentes
+
+    HashSet<String> comps = new  HashSet<String>();
+    comps.add("Zd1"); comps.add("KJ45"); comps.add("Yu6");
+    comps.add("FF671"); comps.add("WW34");
+    
+    // Cria 300000 instancias diferentes
+    
+    ArrayList<Produto> stock = new ArrayList<Produto>();
+       
+    for(int i=0; i < MAXFICHAS-1; i++) {
+        stock.add(new Produto(i, "HKK"+i, 1 + (int) (random()*1000),
+                  comps.clone()));
+    }
+
+     //  Grava as MAXFICHAS fichas numa FileWriter
+     //  via uma BufferedWriter
+
+    GregorianCalendar c = new GregorianCalendar();
+    Date d = c.getTime(); System.out.println(d);
+        try {
+             BufferedWriter bout =
+                 new BufferedWriter(new FileWriter("fichp1.dat"));
+                 for(Produto p : stock)
+                    bout.write(ficha);
+                 bout.flush(); bout.close();
+        }
+        catch(IOException e) { System.out.println(e.getMessage()); }
+    c = new GregorianCalendar();
+    d = c.getTime(); System.out.println(d);
+   }
+ }

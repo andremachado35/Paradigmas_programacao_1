@@ -1,0 +1,12 @@
+
+/**
+ * Write a description of class CofreWild here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+import java.util.*;
+// public class CofreWild extends Cofre<E> {
+//public class CofreWild extends ArrayList<ArrayList<String>> {
+public class CofreWild<E> extends ArrayList<? extends String> {	
+}

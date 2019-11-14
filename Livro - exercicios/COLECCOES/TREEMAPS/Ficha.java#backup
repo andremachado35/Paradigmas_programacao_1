@@ -1,0 +1,49 @@
+import java.util.*;
+import java.io.*;
+
+/**
+ * Classe Ficha 
+ * 
+ * @author PPIV
+ * @version 06-2004
+ */
+public class Ficha implements Serializable {
+
+	// Variáveis de Instância 
+	
+	private int num;
+	private String nome;
+	private String clube;
+	private int idade;
+	private double altura;
+
+	/**
+	 * Construtor de Ficha
+	 */
+	public Ficha(int n, String nm, String clb, int id, double alt) {
+		// inicialização das variáveis de instancia
+		num = n; nome = nm; clube = clb; idade = id; altura = alt;
+	}
+
+	/**
+	 * Selectores
+	 */
+	public int getNumero() {return num;}
+	public String getNome() {return nome;}
+	public String getClube() {return clube;}
+	public int getIdade() {return idade;}
+	public double getAltura() {return altura;}
+	
+	/**
+	 * toString()
+	 */
+	
+	public String toString() {
+	    StringBuffer ficha = new StringBuffer();
+	    ficha.append(num+"\n"); ficha.append(nome+"\n"); 
+	    ficha.append(clube+"\n"); ficha.append(idade+"\n"); 
+	    ficha.append(altura+"\n");
+	    return ficha.toString();
+	}
+	    
+}

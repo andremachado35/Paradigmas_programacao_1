@@ -1,0 +1,27 @@
+
+
+ 
+import static java.lang.System.out;
+import java.util.*;
+public class ProgWrapper {
+  public static void main(String[] args) {
+       ArrayList<Integer> lstInt = new ArrayList<Integer>();
+       ArrayList<Integer> lstInt1 = new ArrayList<Integer>();
+		int i = 111;
+		Integer intg = new Integer(i);
+		lstInt.add(intg);
+		out.println(i == intg.intValue());
+        Integer intg2 = lstInt.get(0);
+        i = intg2.intValue();
+        out.println(i);
+        lstInt.add(222);
+		lstInt.add(333);
+		int soma = 0;
+        for(int ni : lstInt) soma += ni;
+        out.println("Soma = " + soma);
+        out.println(lstInt.get(1)+124);
+        lstInt1.add(lstInt.get(0));
+        for(int n : lstInt1)  out.println(n);
+}
+
+}

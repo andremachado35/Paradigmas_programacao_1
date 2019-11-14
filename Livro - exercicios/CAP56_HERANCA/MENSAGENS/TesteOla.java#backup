@@ -1,0 +1,17 @@
+
+/**
+ * Write a description of class TesteOla here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+
+public class TesteOla {
+	public static void main(String args[]) {
+	    Ola mens, mens1, mens2; mens = new Ola();
+	    mens1 = new Rita(); mens2 = new Pedro();
+	    System.out.println(mens.entrada() + mens.msg());
+	    System.out.println(mens.entrada() + mens1.msg());
+	    System.out.println(mens.entrada() + mens2.msg());
+  }
+}

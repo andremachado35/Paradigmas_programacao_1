@@ -1,0 +1,19 @@
+
+/**
+ * Write a description of class TstEmp here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+	public class TesteEmp {
+	public static void main(String args[]) {
+
+	    Empregado emp1, emp2, emp3; 
+    emp1 = new Empregado("Joao", 20);
+	    emp2 = new Gestor("Rui", 20, 2.2); 
+    emp3 = new Motorista("Ze", 20, 1.2, 200);
+	    System.out.println("Emp1 : " + emp1.salario());
+	    System.out.println("Emp2 : " + emp2.salario()););
+	    System.out.println("Emp3 : " + emp3.salario()););
+  }
+}

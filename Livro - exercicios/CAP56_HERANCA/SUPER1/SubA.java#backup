@@ -1,0 +1,16 @@
+
+/**
+ * Write a description of class SubA here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+    public class SubA extends Super {
+	   private int x = 20; // “shadow”
+	   String nome;   // “shadow”
+	//
+	   public int getX() { return x; }
+	   public String classe() { return "Sub"; }
+	   public String supClasse() { return super.classe(); }
+	   public int soma() { return x + super.x; }
+	}

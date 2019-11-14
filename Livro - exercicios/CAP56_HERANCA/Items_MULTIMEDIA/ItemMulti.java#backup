@@ -1,0 +1,39 @@
+
+/**
+ * Abstract class ItemMulti - write a description of the class here
+ * 
+ * @author (your name here)
+ * @version (version number or date here)
+ */
+	public class Hi8 {
+		//
+		private int minutos;
+		private double ocupacao;
+		private int gravacoes;
+		// construtores
+		public Hi8(String titulo, String data, String obs,
+					    int min, double ocup, int gravc) {
+			super(titulo, data, obs); // super ??
+			minutos = min; ocupacao = ocup; gravacoes = gravc
+		//
+		. . . . . .
+	}
+
+
+	public abstract class ItemMulti {
+		//
+		private String titulo;
+		private String data;
+		private String obs;
+		// construtores
+		public ItemMulti() {
+		  titulo = ""; data = ""; obs = "";
+		}
+		public ItemMulti(String tit, String dat, String com) {
+		  titulo = tit; data = dat; obs = com;
+		}
+		//
+		public abstract double duracao();
+	}
+
+

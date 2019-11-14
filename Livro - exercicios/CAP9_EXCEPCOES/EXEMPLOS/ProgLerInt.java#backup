@@ -1,0 +1,21 @@
+import static java.lang.System.out;
+import java.util.*;
+public class ProgLerInt {
+  public static void main(String[] args) {
+     Scanner input = new Scanner(System.in);
+     //String lixo = "";
+     boolean ok = false; int i = 0; 
+     while(!ok) {
+         out.print("Inteiro: ");
+         try {
+             i = input.nextInt();
+             ok = true;
+         }
+         catch(InputMismatchException e) 
+             { out.println("Inteiro Inválido!"); 
+               //lixo = input.nextLine();}
+     }
+     out.println("Lido = " + i);
+     //out.println("Lixo = " + lixo);
+  }
+}

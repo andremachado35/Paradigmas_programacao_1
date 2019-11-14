@@ -1,0 +1,7 @@
+
+public class Tst implements Cloneable {
+	public static void main(String[] args) {
+	    A a = new A();
+	    A a1 = (A) a.clone();
+   }
+}

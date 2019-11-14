@@ -1,0 +1,11 @@
+
+/**
+ * Write a description of class Ola here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class Ola {
+	public static String entrada() { return "Ola, "; }
+	public String msg() { return "Nome."; }
+}

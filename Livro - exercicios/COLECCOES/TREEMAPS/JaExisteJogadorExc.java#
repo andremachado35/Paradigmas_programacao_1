@@ -1,0 +1,20 @@
+
+/**
+ * Excepção: JaExisteJogadorExc
+ * 
+ * Página não existente
+ * 
+ * @author PPIV
+ */
+public class JaExisteJogadorExc extends Exception {
+
+	/**
+	 * Constructor for objects of class PagNaoExisteExc
+	 */
+	public JaExisteJogadorExc() {
+		super();
+	}
+    public JaExisteJogadorExc(String s) {
+		super(s);
+	}
+}

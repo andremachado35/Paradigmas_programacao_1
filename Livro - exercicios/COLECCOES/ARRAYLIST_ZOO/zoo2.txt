@@ -1,0 +1,69 @@
+--------  JARDIM ZOOLÓGICO DE BRAGA ----------
+-------- DESCRIÇÃO DO MAMÍFERO ------------
+NOME : Luka
+ESPÉCIE : canideo
+PESO : 8
+-------- DESCRIÇÃO DO MAMÍFERO ------------
+NOME : Xiko
+ESPÉCIE : canideo
+PESO : 4
+-------- DESCRIÇÃO DO MAMÍFERO ------------
+NOME : Boby
+ESPÉCIE : canideo
+PESO : 7
+-------- DESCRIÇÃO DO MAMÍFERO ------------
+NOME : Javi
+ESPÉCIE : canideo
+PESO : 12
+-------- DESCRIÇÃO DO MAMÍFERO ------------
+NOME : Kiko
+ESPÉCIE : felino
+PESO : 5
+-------- DESCRIÇÃO DO MAMÍFERO ------------
+NOME : Kika
+ESPÉCIE : felino
+PESO : 4
+-------- DESCRIÇÃO DO MAMÍFERO ------------
+NOME : Sacha
+ESPÉCIE : felino
+PESO : 3
+-------- DESCRIÇÃO DO MAMÍFERO ------------
+NOME : Drago
+ESPÉCIE : felino
+PESO : 6
+-------- DESCRIÇÃO DO MAMÍFERO ------------
+NOME : C1
+ESPÉCIE : roedor
+PESO : 1
+-------- DESCRIÇÃO DO MAMÍFERO ------------
+NOME : C2
+ESPÉCIE : roedor
+PESO : 2
+-------- DESCRIÇÃO DO MAMÍFERO ------------
+NOME : C3
+ESPÉCIE : roedor
+PESO : 3
+-------- DESCRIÇÃO DO MAMÍFERO ------------
+NOME : joy
+ESPÉCIE : felino
+PESO : 6
+-------- DESCRIÇÃO DO MAMÍFERO ------------
+NOME : 
+ESPÉCIE : roedor
+PESO : 0
+-------- DESCRIÇÃO DO MAMÍFERO ------------
+NOME : joy
+ESPÉCIE : felino
+PESO : 6
+-------- DESCRIÇÃO DO MAMÍFERO ------------
+NOME : Hey
+ESPÉCIE : felino
+PESO : 1
+-------- DESCRIÇÃO DO MAMÍFERO ------------
+NOME : C5
+ESPÉCIE : roedor
+PESO : 2
+-------- DESCRIÇÃO DO MAMÍFERO ------------
+NOME : Jonas
+ESPÉCIE : canideo
+PESO : 4

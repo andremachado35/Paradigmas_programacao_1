@@ -1,0 +1,92 @@
+import java.util.*;
+import java.io.*;
+
+/**
+ * Classe Equipa
+ * 
+ * @author PPIV
+ * @version 06-2004
+ */
+public class Equipa implements Serializable, Cloneable {
+
+    // Variáveis de Instancia
+    
+    private String nome;  // nome da equipa
+    private HashMap team; // HashMap (Integer --> Ficha)
+                          // Integer = new Integer(numero) para cada jogador
+                          
+    /**
+     * Construtor Básico de Equipa
+     */
+    public Equipa(String nm) {
+        nome = nm;
+        team = new HashMap();
+    }
+
+    /**
+     * Construtor de Equipa a partir de um Vector de Fichas
+     */
+    public Equipa(String nm, Vector fichas) {
+        nome = nm; team = new HashMap();
+        Ficha fj;
+        for(Enumeration en = fichas.elements(); en.hasMoreElements();) {
+            fj = (Ficha) en.nextElement();
+            team.put(new Integer(fj.getNumero()), fj);
+        }
+    }
+    
+    public String getNome() { return nome;}
+    
+    /**
+     * Insere novo jogador; Lança excepção se nº já existe!!
+     */
+    public void insereJogador(Ficha jogador) throws JaExisteJogadorExc {
+        if(team.containsKey(new Integer(jogador.getNumero())))
+           throw new JaExisteJogadorExc();
+        else
+            team.put(new Integer(jogador.getNumero()), jogador);
+    }
+    
+    /**
+     * Consulta ficha de jogador; Lança excepção se nº não existe.
+     */
+    public Ficha jogadorNumero(int num) throws NaoExisteJogadorExc {
+        if(!team.containsKey(new Integer(num)))
+           throw new NaoExisteJogadorExc();
+        else
+            return (Ficha) team.get(new Integer(num));
+    }
+    
+    /**
+     * Total de jogadores inscritos
+     */
+    public int convocados() {
+        return team.size();
+    }
+    
+    /**
+     * toString() da Equipa
+     */
+    public String toString() {
+        StringBuffer eqtxt = new StringBuffer();
+        eqtxt.append("Equipa: "+nome+"\n");
+        for(Iterator i = team.values().iterator(); i.hasNext();) {
+            eqtxt.append( ((Ficha) i.next()).toString() );
+            eqtxt.append("\n");
+        } 
+        return eqtxt.toString();
+     } 
+     
+     /**
+     * Gravação em Ficheiro de texto
+     */
+     public void gravaEmTxt(String ficheiro) throws IOException {
+        try {
+            FileWriter fout = new FileWriter(ficheiro);
+            fout.write(this.toString());
+            fout.flush(); fout.close();
+            }
+        catch(IOException e) 
+            {throw new IOException("Escrita em "+ficheiro+" com erro!");};
+     }	  
+}

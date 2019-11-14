@@ -1,0 +1,35 @@
+ 
+
+  import java.util.*;
+
+  public class TstStackLim3 {
+  //
+  public static void main(String args[]) {
+  //
+  int dimensao;
+  dimensao = Consola.leInt("Dimensao Maxima da Stack1 ");
+  StackLim stack1 = new StackLim(dimensao);
+  System.out.println("Dimensao Max. da Stack1 = " + stack1.dim());
+  StackLim stack2 = new StackLim();
+  //
+  System.out.println(stack1.empty());
+  System.out.println(stack2.empty());
+  try
+    { stack1.push("anos");
+      stack1.push(new Integer(20));
+      stack1.push("tem");
+      stack1.push("Maria");
+      stack1.push("A");
+      System.out.println(stack1.output());
+      System.out.println(stack1.top());
+      stack1.pop(); stack1.pop(); stack1.pop(); stack1.pop();
+      stack1.pop();
+      System.out.println(stack1.empty());
+      stack1.top();
+   }
+  catch(EmptyStackException e)
+    { System.out.println("STACK VAZIA !!"); }
+  catch(IndexOutOfBoundsException e)
+    { System.out.println("STACK CHEIA !!"); }
+  }
+  }

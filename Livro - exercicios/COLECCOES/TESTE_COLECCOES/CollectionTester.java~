@@ -1,0 +1,203 @@
+ 
+import java.util.*;
+
+/**
+ * CollectionTester: Classe que testa operações de inserção,
+ * enumeração e remoção usando diferentes Collections de JAVA.
+ * 
+ * @author F. Mário Martins 
+ * @version 1.0/11/04/04
+ */
+
+  public class CollectionTester {
+      
+    public static String tmpv, tmpal, tmplkl, tmphm;
+    public static Vector v = new Vector();
+    public static ArrayList al = new ArrayList();
+    public static LinkedList lkl = new LinkedList();
+    public static HashMap hm = new HashMap();
+    public static final int DIM = 250000;  // 1/4 de milhão !!
+    
+     
+     public static String insereMIntegerCollections1() {
+        Cronometro crono = new Cronometro();
+        
+        // SEM DEFINICAO DE CAPACIDADE INICIAL => ALOCAÇÕES
+        // teste com Vector
+        crono.on();
+        for(int i = 0; i < DIM; i++) {
+            v.addElement(new Integer(i));
+        }
+        crono.off(); 
+        tmpv = crono.textSee();
+        
+        // teste com ArrayList
+        crono.on();
+        for(int i = 0; i < DIM; i++) {
+            al.add(new Integer(i));
+        }
+        crono.off(); 
+        tmpal = crono.textSee();
+        
+         // teste com LinkedList
+        crono.on();
+        for(int i = 0; i < DIM; i++) {
+            lkl.addFirst(new Integer(i));
+        }
+        crono.off(); 
+        tmplkl = crono.textSee();
+        
+         // teste com HashMap
+        crono.on();
+        for(int i = 0; i < DIM; i++) {
+            hm.put(new Integer(i), new Integer(i));
+        }
+        crono.off(); 
+        tmphm = crono.textSee();
+        
+        
+        // resultados
+        return new String("Tempo Vector: " + tmpv + "\n" +
+                          "Tempo ArrayList: " + tmpal + "\n" +
+                          "Tempo LinkedList: " + tmplkl + "\n" +
+                          "Tempo HashMap: " + tmphm + "\n");
+     }
+
+
+      
+    public static String insereMIntegerCollections2() {
+        Cronometro crono = new Cronometro();
+        
+        v = new Vector (DIM);
+        al = new ArrayList(DIM);
+        hm = new HashMap(DIM);
+        
+        // COM DEFINICAO DE CAPACIDADE INICIAL => ALOCAÇÕES
+        // teste com Vector
+        crono.on();
+        for(int i = 0; i < DIM; i++) {
+            v.addElement(new Integer(i));
+        }
+        crono.off(); 
+        tmpv = crono.textSee();
+        
+        // teste com ArrayList
+        crono.on();
+        for(int i = 0; i < DIM; i++) {
+            al.add(new Integer(i));
+        }
+        crono.off(); 
+        tmpal = crono.textSee();
+        
+         // teste com LinkedList
+        crono.on();
+        for(int i = 0; i < DIM; i++) {
+            lkl.addFirst(new Integer(i));
+        }
+        crono.off(); 
+        tmplkl = crono.textSee();
+        
+         // teste com HashMap
+        crono.on();
+        for(int i = 0; i < DIM; i++) {
+            hm.put(new Integer(i), new Integer(i));
+        }
+        crono.off(); 
+        tmphm = crono.textSee();
+        
+        
+        // resultados
+        return new String("Tempo Vector: " + tmpv + "\n" +
+                          "Tempo ArrayList: " + tmpal + "\n" +
+                          "Tempo LinkedList: " + tmplkl + "\n" +
+                          "Tempo HashMap: " + tmphm + "\n");
+     }
+ 
+     public static String procuraMIntegerCollections() {
+        Cronometro crono = new Cronometro();
+               
+        // teste com Vector
+        
+        int i = 0; boolean found = false;
+        crono.on();
+        while(i< v.size() && (!found)) {
+              if( ((Integer) v.elementAt(i)).equals(new Integer(-999)) )
+                  found = true;
+              else i++;
+        }
+        crono.off(); 
+        tmpv = crono.textSee();
+        
+        // teste com ArrayList
+        
+        i = 0; found = false;
+        crono.on();
+        while(i< al.size() && (!found)) {
+              if( ((Integer) al.get(i)).equals(new Integer(-999)) )
+                  found = true;
+              else i++;
+        } 
+        crono.off(); 
+        tmpal = crono.textSee();
+        
+       // teste com LinkedList
+        
+        i = 0; found = false;
+        crono.on();
+        System.out.println("LKL:" + lkl.size());
+        tmplkl = "Para " + lkl.size() + " elementos => Infinito !!";
+        /* while(i < DIM && (!found)) {
+              if( ((Integer) lkl.get(i)).equals(new Integer(-999)) )
+                  found = true;
+              else i++;
+        } 
+        crono.off(); 
+        tmplkl = crono.textSee();
+        System.out.println("LinkedList: " + tmplkl);
+        */
+                          
+        // teste com HashMap
+         
+        found = false;
+        Iterator valores = hm.values().iterator();
+        Integer oint;
+        crono.on();
+        while( valores.hasNext() && (!found) ) {
+            found = ((Integer) valores.next()).equals(new Integer(-999));
+        }
+        crono.off(); 
+        tmphm = crono.textSee();
+        
+        
+        // resultados
+        return new String("Tempo Vector: " + tmpv + "\n" +
+                          "Tempo ArrayList: " + tmpal + "\n" +
+                          "Tempo LinkedList: " + tmplkl + "\n" +
+                          "Tempo HashMap: " + tmphm + "\n");
+     }
+
+     public static void main (String[] args) {
+        // estes testes obedecem a uma sequencia:
+        // 1.- Inserção de 1/4 milhão de elementos Integer
+        // 2.- Procura sem sucesso nesse milhão de Integer
+        // 3.- tempo de clear()
+        // 4.- DIM conversões aleatórias toString()
+        // 5.- tempo de iteração completa com teste de instanceof com soma
+        //     e concatenação
+        // 6.-
+        
+        // RESULTADO DAS INSERÇÕES
+        
+        System.out.println("Inserção de 1/4 milhão de Integer \n"+ 
+                            CollectionTester.insereMIntegerCollections1() );
+        System.out.println("Inserção de 1/4 milhão de Integer \n"+ 
+                           "(Com capacidade inicial definida)\n" + 
+                             CollectionTester.insereMIntegerCollections2() );
+                             
+        // RESULTADO DAS PROCURAS
+        
+        System.out.println("Procura sem sucesso em 1/4 milhão de Integer \n"+ 
+                            CollectionTester.procuraMIntegerCollections() );
+                           
+     }      
+  }

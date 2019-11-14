@@ -1,0 +1,5 @@
+public interface Inter2 {
+  public B m1(int x, int y);
+  public double m2(String n1, String n2);
+}
+

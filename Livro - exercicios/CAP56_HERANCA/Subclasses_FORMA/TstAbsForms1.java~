@@ -1,0 +1,37 @@
+
+/**
+ * Write a description of class TstAbsForms1 here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class TstAbsForms1 {
+//
+public static void main(String args[]) {
+
+Triangulo forma1 = new Triangulo(2.0, 6.0);
+Rectangulo forma2 = new Rectangulo(2.0, 13.0);
+Circulo forma3 = new Circulo(3.0);
+
+System.out.println("forma1 = " + forma1.getClass().getName());
+System.out.println("forma2 = " + forma2.getClass().getName());
+System.out.println("forma3 = " + forma3.getClass().getName());
+
+System.out.println("---------- TRIANGULO ----------");
+System.out.println(forma1.base());
+System.out.println(forma1.altura());
+System.out.println(forma1.area());
+System.out.println(forma1.perimetro());
+
+System.out.println("---------- RECTANGULO ----------");
+System.out.println(forma2.comp());
+System.out.println(forma2.largura());
+System.out.println(forma2.area());
+System.out.println(forma2.perimetro());
+
+System.out.println("---------- CIRCULO ----------");
+System.out.println(forma3.raio());
+System.out.println(forma3.area());
+System.out.println(forma3.perimetro());
+}
+}

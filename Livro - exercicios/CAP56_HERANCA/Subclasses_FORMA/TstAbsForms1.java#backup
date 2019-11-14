@@ -1,0 +1,30 @@
+
+/**
+ * Write a description of class TstAbsForms1 here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+import static java.lang.System.out;
+public class TstAbsForms1 {
+//
+public static void main(String args[]) {
+
+Triangulo forma1 = new Triangulo(2.0, 6.0);
+Rectangulo forma2 = new Rectangulo(2.0, 13.0);
+Circulo forma3 = new Circulo(3.0);
+
+out.println("forma1 = " + forma1.getClass().getName());
+out.printf("area = %+5.4f\n", forma1.area());
+out.printf("perimetro = %+5.4f\n", forma1.perimetro());
+
+out.println("forma2 = " + forma2.getClass().getName());
+out.printf("area = %+5.4f\n", forma2.area());
+out.printf("perimetro = %+5.4f\n", forma2.perimetro());
+
+out.println("forma3 = " + forma3.getClass().getName());
+out.printf("area = %+5.4f\n", forma3.area());
+out.printf("perimetro = %+5.4f\n", forma3.perimetro());
+
+}
+}

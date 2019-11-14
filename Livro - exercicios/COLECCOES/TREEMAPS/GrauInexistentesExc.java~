@@ -1,0 +1,20 @@
+
+/**
+ * Excepção: GrauJaExisteExc
+ * 
+ * Termo com este grau já existente
+ * 
+ * @author PPIV
+ */
+public class GrauInexistentesExc extends Exception {
+
+	/**
+	 * Constructor for objects of class GrauInexistentesExc
+	 */
+	public GrauInexistentesExc() {
+		super();
+	}
+    public GrauInexistentesExc(String s) {
+		super(s);
+	}
+}

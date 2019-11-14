@@ -1,0 +1,14 @@
+
+/**
+ * Write a description of class Super here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+    public class Super1 {
+	   protected int x;
+	   String nome;
+	//
+	   public int getX() { return x; }
+	   public String classe() { return "Super1"; }
+	}

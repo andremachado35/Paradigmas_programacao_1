@@ -1,0 +1,12 @@
+
+/**
+ * Write a description of class StackVaziaException here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class StackVaziaException extends Exception {
+  public StackVaziaException() { super(); }
+   public StackVaziaException(String e) { super(e); }
+}
+

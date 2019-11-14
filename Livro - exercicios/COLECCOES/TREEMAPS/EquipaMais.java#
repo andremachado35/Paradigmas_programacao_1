@@ -1,0 +1,84 @@
+
+import java.util.*;
+import java.io.*;
+
+/**
+ * Classe EquipaMais
+ * 
+ * Informação Adicional da Equipa
+ * 
+ * @author PPIV
+ * @version 06-2004
+ */
+public class EquipaMais extends Equipa 
+                        implements Serializable, Cloneable {
+
+    // Variáveis de Instancia
+    
+    private HashMap infoMais; // HashMap (Integer --> FichaAdicional)
+                          // Integer = new Integer(numero) para cada jogador
+                          
+    
+    /**
+     * Construtor de EquipaMais a partir de Vectores de Fichas
+     */
+    public EquipaMais(String nm, Vector fichasBase, Vector fichasMais) {
+      
+        super(nm, fichasBase);    // cria a informação de base
+        infoMais = new HashMap();
+        FichaAdicional fa; Ficha fj;
+        for(int i = 0;  i <= fichasBase.size(); i++) {
+            fj = (Ficha) fichasBase.elementAt(i);
+            fa = (FichaAdicional) fichasMais.elementAt(i);
+            infoMais.put(new Integer(fj.getNumero()), fa);
+        }
+    }
+    
+    /**
+     * Insere informação total de novo jogador.
+     */
+    public void insereJogador(Ficha fb, FichaAdicional fa ) 
+                                   throws JaExisteJogadorExc {
+         try { 
+               this.insereJogador(fb);
+         }
+         catch(JaExisteJogadorExc e)
+           {throw new JaExisteJogadorExc(fb.getNumero() + "Jogador Repetido");}
+           
+         infoMais.put(new Integer(fb.getNumero()), fa);
+    }
+    
+    /**
+     * toString() de EquipaMais (inclui toString() de Equipa !!)
+     */
+    public String toString() {
+        StringBuffer eqtxt = new StringBuffer();
+        Ficha fj; FichaAdicional fa;
+        eqtxt.append("Equipa: "+this.getNome()+"\n");
+        for(Iterator i = infoMais.keySet().iterator(); i.hasNext();) {
+            int numero = ((Integer) i.next()).intValue();
+            fa = (FichaAdicional) infoMais.get(new Integer(numero)); 
+            try {
+                  fj = this.jogadorNumero(numero);
+                  eqtxt.append(fj.toString()); eqtxt.append(fa.toString());
+                  eqtxt.append("------------------------------------\n");
+            }
+            catch(NaoExisteJogadorExc e) {};
+        } 
+        return eqtxt.toString();
+     } 
+     
+     /**
+     * Guarda toda a informação, base e adicional, em ficheiro de texto
+     */
+     public void gravaEmTxt(String ficheiro) throws IOException {
+        try {
+            FileWriter fout = new FileWriter(ficheiro);
+            fout.write(super.toString());
+            fout.write(this.toString());
+            fout.flush(); fout.close();
+            }
+        catch(IOException e) 
+            {throw new IOException("Escrita em "+ficheiro+" com erro!");};
+     }	  
+}

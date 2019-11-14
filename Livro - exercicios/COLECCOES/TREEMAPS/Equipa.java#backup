@@ -1,0 +1,42 @@
+import java.util.*;
+import java.io.*;
+
+/**
+ * Classe Equipa
+ * 
+ * @author PPIV
+ * @version 06-2004
+ */
+public class Equipa implements Serializable, Cloneable {
+
+    // Variáveis de Instancia
+    
+    private String nome;  // nome da equipa
+    private HashMap team; // HashMap (Integer --> Ficha)
+                          // Integer = new Integer(numero) para cada jogador
+                          
+    /**
+     * Construtor Básico de Equipa
+     */
+    public Equipa(String nm) {
+        nome = nm;
+        team = new HashMap();
+    }
+
+    /**
+     * Construtor de Equipa a partir de um Vector de Fichas
+     */
+    public Equipa(String nm, Vector fichas) {
+        nome = nm;
+        team = new HashMap();
+        Ficha fj;
+        for(Enumeration en = fichas.elements(); en.hasMoreElements();) {
+            fj = (Ficha) en.nextElement();
+            team.put(new Integer(fj.getNumero()), fj);
+        }
+    }
+    
+
+ 
+ 
+}

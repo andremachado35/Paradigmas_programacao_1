@@ -1,0 +1,62 @@
+
+/**
+ * Write a description of class TstEnumSet2 here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+import java.util.EnumSet;
+import static java.lang.System.out;
+// Java, C, Cmm, Csh, Mod2, Lisp, Haskel, Pascal, Pearl, Pyton, Ada, Vb
+public class TstEnumSet2 {
+  public static void main(String[] args) {
+    String str = "";
+    EnumSet<LP> todas1 = EnumSet.allOf(LP.class);
+    EnumSet<LP> todas2 = EnumSet.copyOf(todas1);
+    //
+    EnumSet<LP> lfunc = EnumSet.of(LP.Haskel,LP.Lisp);
+    str = "Funcional ";
+    for(LP lp : lfunc) out.printf("%s %s %n", str, lp);
+    EnumSet<LP> limp = EnumSet.of(LP.C,LP.Mod2,LP.Pascal,LP.Ada,LP.Vb);
+    str = "Imperativa ";
+    for(LP lp : limp) out.printf("%s %s %n", str, lp);
+    EnumSet<LP> lpoo = EnumSet.of(LP.Java,LP.Cmm,LP.Csh,LP.Pyton);
+    EnumSet<LP> lscrp = EnumSet.of(LP.Pearl);
+    // A - B diferença
+    // Linguagens nao funcionais
+    EnumSet<LP> temp = todas1.complementOf(lfunc);
+    str = "Nao funcional ";
+    for(LP lp : temp) out.printf("%s %s %n", str, lp);
+    // A U B
+    // Reuniao funcionais + imperativas
+    temp.clear(); temp.addAll(lfunc); temp.addAll(limp); 
+    str = "Func + Imp ";
+     for(LP lp : temp) out.printf("%s %s %n", str, lp);
+    // A && B
+    // 
+    // temp = 
+     
+	/*
+	EnumSet<Cafe> meuCafe = EnumSet.range(Cafe.Curto, Cafe.Cheio);
+	EnumSet<Cafe> teuCafe = EnumSet.range(Cafe.Vazio, Cafe.Normal);
+	EnumSet<Cafe> dif = todos.complementOf(meuCafe);
+	out.println("---- EU SIRVO ----");
+	for(Cafe c : meuCafe) out.printf("Café %s%n", c.name()); 
+	out.println("---- MAS NAO SIRVO ----");
+	for(Cafe c : dif) out.printf("Café %s%n", c.name());
+	out.println("------------------");
+	out.printf("Tu serves %s ? %s%n", Cafe.Curto.name(), 
+	    teuCafe.contains(Cafe.Curto) ? "SIM!":"NÃO!");
+	out.printf("Serves %s ? %s%n", Cafe.XCheio.name(), 
+	    teuCafe.contains(Cafe.XCheio) ? "SIM!":"NÃO!");
+	out.println("Então serves : "); 
+	for(Cafe c : teuCafe) out.printf(" %s%n", c.name());
+	dif.clear(); // limpa conjunto
+	dif = meuCafe.complementOf(teuCafe);
+	out.println("---- EU SIRVO ----");
+	for(Cafe c : dif) out.println(c);
+	out.println("---- E TU NÃO !! ----\n");
+	*/
+
+}
+}

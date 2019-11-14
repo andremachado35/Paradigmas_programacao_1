@@ -1,0 +1,64 @@
+/**
+ * Write a description of class TstFormas here.
+ * 
+ * @author FMM
+ * @version 1.0/2005
+ */
+import static java.lang.System.out;
+import java.util.*;
+public class TstZoo1 {
+
+    public static ArrayList<Cao> criaCaes() {
+        ArrayList<Cao> caes = new ArrayList<Cao>();
+        // 
+        caes.add(new Cao("BIS", "BASS", 10));
+        caes.add(new Cao("LUKA", "RAF", 7));
+        caes.add(new Cao("GET", "CAN", 5));
+        return caes;
+    }
+    
+     public static ArrayList<Gato> criaGatos() {
+        ArrayList<Gato> gatos = new ArrayList<Gato>();
+        //
+        gatos.add(new Gato("PUF", "CHI", 2));
+        gatos.add(new Gato("UDI", "PER", 3));
+        gatos.add(new Gato("BIS", "BAN", 1));       
+        return gatos;
+    }
+    
+    public static ArrayList<Coelho> criaCoelhos() {
+        ArrayList<Coelho> coelhos = new ArrayList<Coelho>();
+        coelhos.add(new Coelho("LEV", "IND", 2));
+        return coelhos;
+    }
+
+
+        
+    public static ZooMam main(String[] args) {
+        ZooMam mamifs = new ZooMam();
+        //
+        ArrayList<Mamifero> mamifs1 = new ArrayList<Mamifero>();
+        // podemos inserir em Array<Mamifero> um qualquer subtipo !!
+        mamifs1.add(new Cao("AXE", "BOXER", 12));
+        mamifs1.add(new Gato("KIKA", "SIAM", 4));
+        mamifs1.add(new Coelho("X", "CHI", 2));      
+        // addAll() funciona com todos os subtipos
+        mamifs1.addAll(criaCaes()); 
+        mamifs1.addAll(criaGatos()); 
+        mamifs1.addAll(criaCoelhos());
+        //
+        mamifs.juntaMamif(new Gato("COCAS", "SIA", 9));
+        mamifs.juntaMamifs(mamifs1);
+        
+        // ARRAYLIST<Mamifero> é superclasse de ArrayList<Cao>
+        //mamifs.juntaMamifs(caes);
+        //mamifs.juntaMamifs(gatos);
+        //mamifs.juntaMamifs(coelhos);
+        
+        mamifs.toString();
+        
+        return mamifs;
+
+    }
+ }
+ 

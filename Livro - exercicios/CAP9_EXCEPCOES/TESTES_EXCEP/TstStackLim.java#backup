@@ -1,0 +1,26 @@
+ 
+import java.util.Scanner;
+import static java.lang.System.out;
+public class TstStackLim {
+  //
+  public static void main(String args[]) {
+  //
+  Scanner input = new Scanner(System.in);
+  int dimensao;
+  out.print("Diemsao Maxima da Stack a criar: "); 
+  dimensao = input.nextInt();
+  StackLim stack1 = new StackLim(dimensao);
+  out.println("Dimensao Max. da Stack1 = " + stack1.dim());
+  //
+  out.println(stack1.empty());
+  stack1.push("anos"); stack1.push(new Integer(20));
+  stack1.push("tem"); stack1.push("Maria"); stack1.push("A");
+  out.println(stack1.output());
+  out.println(stack1.top());
+  stack1.pop(); stack1.pop();
+  stack1.pop(); stack1.pop();
+  stack1.pop();
+  out.println(stack1.empty());
+  stack1.top();
+  }
+}

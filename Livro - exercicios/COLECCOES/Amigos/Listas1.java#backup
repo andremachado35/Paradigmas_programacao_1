@@ -1,0 +1,15 @@
+
+
+import static java.lang.System.out;
+import java.util.*;
+public class Listas1 {
+  public static void main(String[] args) {
+    ArrayList<String> amigos = new ArrayList<String>();
+	ArrayList<String> amigas = new ArrayList<String>(50);
+	ArrayList<String> devedores = new ArrayList<String>();
+	amigos.add(new Integer(127));
+	amigos.add("Jorge"); amigos.add("Ivo");
+	amigos.add("Rui"); amigos.add("Armando"); amigos.add("Pedro");
+	amigas.add("Vera"); amigas.add("Rute");
+  }
+}

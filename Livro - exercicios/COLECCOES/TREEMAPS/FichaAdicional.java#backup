@@ -1,0 +1,48 @@
+
+import java.util.*;
+import java.io.*;
+
+/**
+ * Classe FichaAdicional
+ * 
+ * @author PPIV
+ * @version 06-2004
+ */
+public class FichaAdicional implements Serializable {
+
+	// Variáveis de Instância 
+	
+	private int numjogos;
+	private int golos;
+	private int amar;
+	private int verm;
+
+	/**
+	 * Construtor de Ficha
+	 */
+	public FichaAdicional(int nj, int ng, int nam, int nvrm) {
+		// inicialização das variáveis de instancia
+		numjogos = nj; golos = ng; amar = nam; verm = nvrm;
+	}
+
+	/**
+	 * Selectores
+	 */
+	public int getNumero() {return num;}
+	public String getNome() {return nome;}
+	public String getClube() {return clube;}
+	public int getIdade() {return idade;}
+	public double getAltura() {return altura;}
+	
+	/**
+	 * toString()
+	 */
+	
+	public String toString() {
+	    StringBuffer ficha = new StringBuffer();
+	    ficha.append(num+"\n"); ficha.append(nome+"\n"); 
+	    ficha.append(clube+"\n"); ficha.append(idade+"\n"); 
+	    ficha.append(altura+"\n");
+	    return ficha.toString();
+	}	    
+}

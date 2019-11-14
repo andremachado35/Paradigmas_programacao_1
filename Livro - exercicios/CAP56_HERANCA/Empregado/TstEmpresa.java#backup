@@ -1,0 +1,24 @@
+
+/**
+ * Write a description of class TstEmpresa here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class TstEmpresa {
+ public static void main(String[] args) {
+        Empregado[] empresa = new Empregado[10]; 
+        int numEmp;
+        //
+	    empresa[0] = new Empregado("Joao", 20);
+		empresa[1] = new Gestor("Rui", 20, 2.2); 
+		empresa[2] = new Motorista("Ze", 20, 1.2, 200);
+		numEmp = 3; 
+        double totVenc = 0.0;  
+        for(int i=0; i < empresa.numEmp ; i++) {
+	     totVenc += empresa[i].salario();
+	     }
+	    System.out.println("Total de Vencimentos = " + totVenc);
+
+    }
+}

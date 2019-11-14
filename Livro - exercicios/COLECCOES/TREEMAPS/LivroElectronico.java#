@@ -1,0 +1,218 @@
+import java.util.*;
+import java.io.*;
+
+/**
+ * Classe LivroElectronico
+ * 
+ * Uma implementação de um LIVRO usando duas stacks.
+ * A stack esquerda representa as páginas já lidas.
+ * A da direita representa as páginas a ler.
+ * Uma página é apenas uma String, não interessando se
+ * tem frente e verso ou apenas frente, dado que isso
+ * são formatos.
+ * 
+ * @author PPIV
+ * @version 06-2004
+ */
+public class LivroElectronico implements Serializable {
+
+	// Variáveis de Instancia
+	private Stack esquerda;   // páginas já desfolhadas
+	private Stack direita;    // páginas ainda não lidas. actual = 1a.
+
+	/**
+	 * Construtor de LivroElectronico
+	 */
+	public LivroElectronico() {
+		esquerda = new Stack();
+		direita = new Stack();
+	}
+	
+	public LivroElectronico(Vector listaPags) {
+	    esquerda = new Stack();
+	    direita = new Stack();
+	    for(int i = 0; i <= listaPags.size()-1; i++) {
+	         direita.push((String) listaPags.elementAt(i));
+	    }
+	}
+
+
+	/**
+	 * Insere página no livro
+	 * @param  pagina String
+	 */
+	public void inserePagina(String pagina) {
+	    direita.push(pagina);
+	}
+	
+	/**
+	 * Insere no livro uma lista de páginas não lidas 
+	 * @param  Vector String
+	 */
+	public void inserePaginas(Vector listaPags) {
+	    for(int i = 0; i <= listaPags.size()-1; i++) {
+	         direita.push((String) listaPags.elementAt(i));
+	    }
+	}
+	
+    /**
+	 * Devolve a página actual, se existir
+	 * String não precisam de clone() !!
+	 */
+	public String paginaActual() throws PagNaoExisteExc {
+	    if (direita.empty()) throw new PagNaoExisteExc();
+	    else return (String) direita.top();
+	}
+	
+    /**
+	 * Desfolha a página actual, se existir
+	 */
+	public void desfolha() throws PagNaoExisteExc {
+	    if (direita.empty()) throw new PagNaoExisteExc();
+	    else {
+	          esquerda.push(direita.top());
+	          direita.pop();
+	       }
+	}
+	
+    /**
+	 * Desfolha N páginas se possível, até não haver mais
+	 */
+	public void desfolhaN(int n) {
+	    while(!direita.empty() && n > 0) {
+	       esquerda.push(direita.top());
+	       direita.pop(); n--;
+	    }
+	}
+
+     /**
+	 * Desfolha N páginas. Se for impossível lança excepção e
+	 * não altera o estado.
+	 */
+	public void desfolhaNExc(int n) throws PagNaoExisteExc {
+	    if(direita.size() < n) 
+	        throw new PagNaoExisteExc();
+	    else {
+	          while(!direita.empty() && n > 0) {
+	            esquerda.push(direita.top());
+	             direita.pop(); n--;
+	          }
+	       }
+	}
+        
+    /**
+	 * Passa para um ArrayList as páginas lidas (esquerda).
+	 * Nota: O Livro não pode ser destruído !!
+	 * Nota: Insere no ArrayList da última para a 1a. que vai
+	 * ficar no índice 0
+	 */
+	public ArrayList lidas() {
+	    Stack lidas = (Stack) esquerda.clone();  // stack auxiliar
+	    int numPaginas = lidas.size();
+	    ArrayList pagLidas = new ArrayList();
+	    // inicializa ArrayList para não haver erros de IndexOutOfBounds
+	    for(int i = 0; i < numPaginas; i++) { pagLidas.add("");}
+	    // copia a stack para o ArrayList
+	    while(!lidas.empty()) {
+	       pagLidas.set(numPaginas-1, lidas.top());
+	       lidas.pop(); numPaginas--;
+	    }
+	    return pagLidas;
+	}
+	
+	/**
+	 * Passa para um ArrayList as páginas não lidas (direita).
+	 * Nota: O Livro não pode ser destruído !!
+	 * Nota: Insere no ArrayList da última para a 1a. que vai
+	 * ficar no índice 0
+	 */
+	public ArrayList nlidas() {
+	    Stack nlidas = (Stack) direita.clone();  // stack auxiliar
+	    int numPaginas = nlidas.size();
+	    ArrayList pagNLidas = new ArrayList();
+	    // inicializa ArrayList para não haver erros de IndexOutOfBounds
+	    for(int i = 0; i < numPaginas; i++) { pagNLidas.add("");}
+	    // vai copiar da Stack para o ArrayList   
+	    while(!nlidas.empty()) {
+	       pagNLidas.set(numPaginas-1, nlidas.top());
+	       nlidas.pop(); numPaginas--;
+	    }
+	    return pagNLidas;
+	}
+
+	/**
+	 * Passa para um ArrayList todo o livro.
+	 * Nota: O Livro não pode ser destruído !!
+	 * Nota: Neste caso, a inserção vai colocar a página N
+	 * no índice N do ArrayList, cf. pedido !!
+	 */
+	public ArrayList converteLivro() {
+	    Stack lidas = (Stack) esquerda.clone();  // stack auxiliar1
+	    Stack nlidas = (Stack) direita.clone();  // stack auxiliar2
+	    int numPaginasL = lidas.size(); 
+	    int numPaginasNL = nlidas.size();
+	    ArrayList livro = 
+	        new ArrayList(); // índice 0 não é usado !
+	    // inicializa o ArrayList    
+	    for(int i = 0; i< numPaginasL+numPaginasNL+1; i++) { 
+	         livro.add("");
+	    }
+	    livro.set(0, new Integer(numPaginasL));  // número de não lidas !!
+	    
+	    for (int i = numPaginasL; i > 0; i--) {
+	        livro.set(i, lidas.top()); lidas.pop();
+	    }
+	    // aqui poderia usar-se o método auxiliar stackToArrayL e depois
+	    // escrever livro.addAll(this.stackToArrayL)
+	    
+	    for (int i = 0; i < numPaginasNL; i++) {
+	        livro.set(numPaginasL+i+1, nlidas.top()); nlidas.pop();
+	    }
+	    return livro;
+	}
+
+    /**
+	 * Método Auxiliar: Passa cópia da Stack direita para ArrayList. 
+	 */
+    private ArrayList stackDirToArrayL() {
+        Stack copiaDir = (Stack) direita.clone();
+        int numPag = copiaDir.size();
+        ArrayList livroDir = new ArrayList();
+        for(int i = 0; i < numPag; i++) {
+           livroDir.add(copiaDir.top()); copiaDir.pop(); 
+        }
+        return livroDir;
+     }
+     
+    
+     /**
+	 * Passa para uma String todo o livro.
+	 * Nota: O Livro não pode ser destruído !!
+	 */
+	public String toString() {
+	    StringBuffer livro = new StringBuffer();
+	    Stack lidas = (Stack) esquerda.clone();  // stack auxiliar1
+	    Stack nlidas = (Stack) direita.clone();  // stack auxiliar2
+	    int numPaginasL = lidas.size(); 
+	    int numPaginasNL = nlidas.size();
+	    ArrayList livroEsq = new ArrayList(); 
+	    // inicializa o ArrayList    
+	    for(int i = 0; i< numPaginasL+1; i++) { 
+	         livroEsq.add("");
+	    }    
+	    livroEsq.set(0, new Integer(numPaginasL));
+	    for (int i = numPaginasL; i > 0; i--) {
+	        livroEsq.add(i, lidas.top()); lidas.pop();
+	    }
+	    // passa do ArrayList para a StringBuffer, já por ordem correcta
+	    for (int i = 1;  i < numPaginasL; i++) {
+	        livro.append(livroEsq.get(i)+"\n");
+	    }
+	    
+	    for (int i = 0; i < numPaginasNL; i++) {
+	        livro.append(nlidas.top()+"\n"); nlidas.pop();
+	    }
+	    return livro.toString();
+	}
+
+}

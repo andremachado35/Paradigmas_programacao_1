@@ -1,0 +1,45 @@
+
+/**
+ * Write a description of class TstFormas here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+import static java.lang.System.out;
+import java.util.*;
+public class TstFormas {
+	public static void main(String[] args) {
+	    Formas fms = new Formas();
+	    ArrayList<Circulo> circs = new ArrayList<Circulo>();
+	    ArrayList<Triangulo> triangs = new ArrayList<Triangulo>();
+	    ArrayList<Rectangulo> rects = new ArrayList<Rectangulo>();
+	    ArrayList<Forma> fms1 = new ArrayList<Forma>();
+	    // podemos inserir em Array<Forma> um qualquer subtipo !!
+	    fms1.add(new Circulo(1.0));
+	    fms1.add(new Triangulo(2.0, 3.0));
+	    fms1.add(new Rectangulo(4.0, 5.0));
+	    // em Forma podemos inserir com addForma() um subtipo
+	    fms.addForma(new Circulo(2.0));
+	    fms.addForma(new Triangulo(3.0, 4.0));
+	    fms.addForma(new Rectangulo(5.0, 6.0));
+	    
+	    // 
+	    circs.add(new Circulo(6.0));
+	    circs.add(new Circulo(2.5));
+	    circs.add(new Circulo(3.5));
+	    //
+	    triangs.add(new Triangulo(3.5, 3.5));
+	    triangs.add(new Triangulo(4.5, 3.0));
+	    triangs.add(new Triangulo(5.0, 3.0));
+	    //
+	    rects.add(new Rectangulo(7.0, 5.0));
+	    rects.add(new Rectangulo(5.0, 8.0));
+	    
+	    // ARRAYLIST<? extends FORMA> É SUPER DE ARRAYLIST<CIRCULO>, etc.
+	    fms1.addAll(circs); 
+	    fms1.addAll(triangs); 
+	    fms1.addAll(rects);
+	    // ARRAYLIST<FORMA> NAO.
+	    // fms.addAll(circs); 
+	}
+}

@@ -1,0 +1,124 @@
+
+/**
+ * Classe Banco.
+ * Classe que gere as várias operações possíveis sobre
+ * contas bancárias, que são instâncias da classe 
+ * ContaBanc.
+ */
+import java.util.*;
+import java.io.*;
+public class Banco implements Serializable {
+ // Variáveis de Instância
+    private HashMap<String, Conta> contas;
+    private String nomeBanco;
+
+    public Banco(String nome) {
+        contas = new HashMap<String, Conta>(); nomeBanco = nome;
+    }
+
+    public Banco(HashMap<String, Conta> cts, String nome) {
+        nomeBanco = nome;
+        contas = new HashMap<String, Conta>(); 
+        for(Conta cb : cts.values())
+            contas.put(cb.getNumConta(), cb.clone());
+    }
+
+    // Número total de contas
+    public int numContas() { return contas.size(); }
+    // Nome actual do Banco
+    public String getNomeBanco() { return nomeBanco; }
+    public void mudaNmBanco(String nvNm) { nomeBanco = nvNm; }
+
+    public Conta daConta(String numConta) {
+            return contas.get(numConta).clone(); // devolve cópia
+    }
+
+    public boolean existeConta(String numConta) {
+        return contas.containsKey(numConta);
+    }
+
+    public void criaConta(Conta conta) { 
+        contas.put(conta.getNumConta(), conta.clone());
+    }
+
+    public ArrayList<String> listaNumeros() {
+        ArrayList<String> nums = new ArrayList<String>();     
+        for(String numc : contas.keySet()) 
+            nums.add(numc); // clone() não necessário
+        return nums;
+    }
+
+    public HashSet<String> conjNumeros() {        
+        HashSet<String> cnums = new HashSet<String>();     
+        for(String num : contas.keySet()) 
+            cnums.add(num); 
+        return cnums;
+    }
+
+    public HashSet<String> codCtSldMaiorQue(double valor) { 
+        HashSet<String> cods = new HashSet<String>();  
+        for(Conta conta : contas.values()) 
+            if( conta.getSaldo() > valor )
+                cods.add(conta.getNumConta()) ;          
+        return cods;
+    }
+
+    public void levantamento(String numConta, double valor) {
+        Conta conta = contas.get(numConta);
+        conta.levantamento(valor);
+        conta.mudaUltMov(new GregorianCalendar());
+    }
+
+    public void deposito(String numConta, double valor) {
+        contas.get(numConta).deposito(valor);
+        contas.get(numConta).mudaUltMov(new GregorianCalendar());
+    }
+
+   public void removeConta(String numConta) {
+        contas.remove(numConta);
+   }
+
+  private long numDias(GregorianCalendar data) {
+      GregorianCalendar hoje = new GregorianCalendar();
+      long hojeMils = hoje.getTimeInMillis();
+      long dataMils = data.getTimeInMillis();
+      long milis = hojeMils - dataMils;
+      return milis/(24*60*60*1000);
+  }
+
+  public HashSet<String> contasParadas() {
+      HashSet<String> nums = new HashSet<String>();
+      GregorianCalendar hoje = new GregorianCalendar();
+      for(Conta c : contas.values()) {
+         if( this.numDias(c.getUltMov()) > 365 )
+              nums.add(c.getNumConta());
+      }
+      return nums;
+  }
+
+  public double totalTitular(String nome) {
+      double total = 0;
+      for(Conta cb : contas.values())
+          if( cb.getTitular().equals(nome) )
+               total += cb.getSaldo();
+      return total;
+  }
+  
+  public HashMap<String, Double> totalTitular() {
+      HashMap<String, Double> valTit = new HashMap<String, Double>();
+      HashSet<String> tits = new HashSet<String>();
+      for(Conta cb : contas.values())
+            tits.add(cb.getTitular());
+      for(String tit : tits)
+            valTit.put(tit, new Double(this.totalTitular(tit)));
+      return valTit;
+  }
+
+  public void remParadasXAnos(int numAnos) {
+      HashSet<String> nums = new HashSet<String>();
+      for(Conta c : contas.values())
+         if( numDias(c.getUltMov()) >= 365*numAnos )
+               nums.add(c.getNumConta());
+      for(String nc : nums) contas.remove(nc);
+  }
+}

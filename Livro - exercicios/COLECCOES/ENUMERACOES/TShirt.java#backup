@@ -1,0 +1,18 @@
+
+/**
+ * Enumeration class TShirt - write a description of the enum class here
+ * 
+ * @author (your name here)
+ * @version (version number or date here)
+ */
+public enum TShirt {
+	S(10),
+	M(20),
+	L(30),
+	XL(40),
+	XXL(50);
+	private TShirt(int preco)
+	  { this.preco = preco; }
+	private int preco;
+	public int getPreco() { return preco; };
+}

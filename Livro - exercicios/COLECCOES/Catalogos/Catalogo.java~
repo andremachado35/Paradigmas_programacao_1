@@ -1,0 +1,29 @@
+	
+	import java.util.*;
+	import java.io.Serializable;
+	public class Catalogo extends AbsCatalogo implements Serializable {
+		//
+		private TreeMap<String, Catalogo> cat;
+		//
+		public Catalogo() {
+			cat = new TreeMap<String, Catalogo>();
+		}
+		public Catalogo(TreeMap<String, Catalogo> c) {
+			cat = new TreeMap<String, Catalogo>();
+			for(String s : c.keySet())
+			   cat.put(s, cat.get(s).clone());
+		}
+		//
+
+		
+		public Catalogo getValor(String chave) {
+			return cat.get(chave).clone();
+		}
+		
+		public Catalogo clone() {
+		    TreeMap<String, Catalogo> catAux = new TreeMap<String, Catalogo>();
+		    for(String s : cat.keySet())
+		      catAux.put(s, cat.get(s).clone());
+		    return new Catalogo(catAux);
+		}
+   }

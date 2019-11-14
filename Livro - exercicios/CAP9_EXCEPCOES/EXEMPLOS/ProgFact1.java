@@ -1,0 +1,22 @@
+import static java.lang.System.out;
+import java.util.Scanner;
+public class ProgFact1 {
+  public static int factorial(int n) {
+   if(n==1) return 1;
+   else return n*factorial(n-1);
+  } 
+  public static void main(String[] args) {
+   int i = 0;
+   try {  
+       i = Integer.parseInt(args[0]);
+   }
+   catch(NumberFormatException e) {
+       out.println(e.getClass().getSimpleName());
+       out.println(e.getMessage());
+       Scanner input = new Scanner(System.in);
+       out.print("Inteiro: ");
+       i = input.nextInt();
+   }
+   out.println(i+"!=" + factorial(i));
+  }
+}

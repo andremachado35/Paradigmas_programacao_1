@@ -1,0 +1,7 @@
+	
+	import java.util.*;
+	import java.io.Serializable;
+	public abstract class AbsCatalogo implements Serializable {
+		public abstract AbsCatalogo clone();
+		
+   }

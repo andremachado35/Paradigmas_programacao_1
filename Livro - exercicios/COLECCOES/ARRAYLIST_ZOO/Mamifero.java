@@ -1,0 +1,65 @@
+
+/**
+ * Abstract class Mamifero 
+ * 
+ * @author Mario Martins
+ * @version 1.0 (Maio 2005)
+ */
+public abstract class Mamifero {
+	
+	/**
+	 * Construtor por omissão
+	 */
+	public Mamifero() {
+	    nome = ""; especie = ""; peso = 0;
+	}
+	
+	/**
+	 * Construtor completo
+	 */
+	public Mamifero(String nom, String espec, int pesa) {
+	    nome = nom; especie = espec; peso = pesa;
+	}
+	
+	// Variáveis de Instância
+	
+	private String nome;
+	private String especie;
+	private int peso;
+	
+	 // Métodos de Instância
+
+	/**
+	 * Devolve o nome
+	 */
+	public String daNome() { return nome; }
+	
+	/**
+	 * Devolve a espécie
+	 */
+	public String daEspecie() { return especie; }
+	
+	/**
+	 * Devolve o peso
+	 */
+	public int daPeso() { return peso; }
+	
+	/**
+	 * Devolve a descrição como String
+	 */
+	public String toString() {
+	     StringBuffer s = new StringBuffer();
+	     s.append("-------- DESCRIÇÃO DO MAMÍFERO ------------\n");
+	     s.append("NOME : "); s.append(nome); s.append("\n");
+	     s.append("ESPÉCIE : "); s.append(especie); s.append("\n");
+	     s.append("PESO : "); s.append(peso); s.append("\n");
+	     return s.toString();
+    }
+	
+  	// Métodos Abstractos
+  	
+	/**
+	 * Força a Redefinição de clone()
+	 */
+	public abstract Mamifero clone();		
+}

@@ -1,0 +1,39 @@
+import java.util.*;
+import java.io.*;
+
+/**
+ * Classe Polinomio1 
+ * 
+ * Representação de um polinómio P(x) de coeficiente inteiros,
+ * usando um HashMap que associa a cada Grau o respectivo Coeficiente.
+ * 
+ * Grau e Coeficiente são do tipo Integer (cf. int -> Integer).
+ * 
+ * @author PPIV
+ * @version (06-2004
+ */
+public class Polinomio1 implements Serializable, Standard {
+    // Variáveis de Instancia
+
+    private HashMap poli;  // Integer (Grau) --> Integer (Coef)
+    
+     * Constructor for objects of class Polinomio1
+     */
+    public Polinomio1()
+    {
+        // initialise instance variables
+        x = 0;
+    }
+
+    /**
+     * An example of a method - replace this comment with your own
+     * 
+     * @param  y   a sample parameter for a method
+     * @return     the sum of x and y 
+     */
+    public int sampleMethod(int y)
+    {
+        // put your code here
+        return x + y;
+    }
+}

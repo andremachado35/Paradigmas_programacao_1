@@ -1,0 +1,459 @@
+ 
+
+import java.util.*;
+
+/**
+ * CollectionTester: Classe que testa operações de inserção,
+ * enumeração e remoção usando diferentes Collections de JAVA.
+ * 
+ * @author F. Mário Martins 
+ * @version 1.0/11/04/04
+ */
+
+  public class CollectionTester {
+      
+    public static String tmpv, tmpal, tmphs, tmpts, tmplkl, tmphm, tmptm;   
+    public static Vector<Integer> v = new Vector<Integer>();
+    public static ArrayList<Integer> al = new ArrayList<Integer>();
+    //public static LinkedList<Integer> lkl = new LinkedList<Integer>();
+    public static HashSet<Integer> hs = new HashSet<Integer>();
+    public static TreeSet<Integer> ts = new TreeSet<Integer>();
+    public static HashMap<Integer, Integer> hm = 
+        new HashMap<Integer, Integer>();
+    public static TreeMap<Integer, Integer> tm = 
+        new TreeMap<Integer, Integer>();
+    public static final int DIM = 200000; 
+    public static final int CHAVE = DIM/2;  
+    public static final int BLUFF = DIM/2+1;  
+     
+     public static String insereMIntegerCollections() {
+        Cronometro crono = new Cronometro();
+        
+        // teste com Vector
+        crono.on();
+        for(int i = 0; i < DIM; i++) {
+            v.addElement(new Integer(i));
+        }
+        crono.off(); 
+        tmpv = crono.textSeeMilis();
+        
+        // teste com ArrayList
+        crono.on();
+        for(int i = 0; i < DIM; i++) {
+            al.add(new Integer(i));
+        }
+        crono.off(); 
+        tmpal = crono.textSeeMilis();
+        
+        // teste com HashSet
+        crono.on();
+        for(int i = 0; i < DIM; i++) {
+            hs.add(new Integer(2*i));
+        }
+        crono.off(); 
+        tmphs = crono.textSeeMilis();
+        
+        // teste com TreeSet
+        crono.on();
+        for(int i = 0; i < DIM; i++) {
+            ts.add(new Integer(2*i));
+        }
+        crono.off(); 
+        tmpts = crono.textSeeMilis();
+        
+        // teste com LinkedList
+        /*
+        crono.on();
+        for(int i = 0; i < DIM; i++) {
+            lkl.addFirst(new Integer(2*i));
+        }
+        crono.off(); 
+        tmplkl = crono.textSeeMilis();
+        */
+       
+         // teste com HashMap
+        crono.on();
+        for(int i = 0; i < DIM; i++) {
+            hm.put(new Integer(2*i), new Integer(2*i));
+        }
+        crono.off(); 
+        tmphm = crono.textSeeMilis();
+        
+        // teste com TreeMap
+        crono.on();
+        for(int i = 0; i < DIM; i++) {
+            tm.put(new Integer(2*i), new Integer(2*i));
+        }
+        crono.off(); 
+        tmptm = crono.textSeeMilis();
+
+        
+        // resultados
+        return new String("Tempo Vector: " + tmpv + "\n" +
+                          "Tempo ArrayList: " + tmpal + "\n" +
+                          "Tempo HashSet: " + tmphs + "\n" +
+                          "Tempo TreeSet: " + tmpts + "\n" +
+                          //"Tempo LinkedList: " + tmplkl + "\n" +
+                          "Tempo HashMap: " + tmphm + "\n" +
+                          "Tempo TreeMap: " + tmptm + "\n");
+     }
+     
+     public static String procuraMIntegerCollections1() {
+        Cronometro crono = new Cronometro();
+               
+        // teste com Vector
+        
+        int i = 0; boolean found = false;
+        crono.on();
+        while(i< v.size() && (!found)) {
+              if( v.elementAt(i).equals(new Integer(BLUFF)) )
+                  found = true;
+              else i++;
+        }
+        crono.off(); 
+        tmpv = crono.textSeeMilis();
+        
+        // teste com ArrayList
+        
+        i = 0; found = false;
+        crono.on();
+        while(i< al.size() && (!found)) {
+              if( al.get(i).equals(new Integer(BLUFF)) )
+                  found = true;
+              else i++;
+        } 
+        crono.off(); 
+        tmpal = crono.textSeeMilis();
+        
+         // teste com HashSet
+        
+        i = 0; found = false;
+        crono.on();
+        Iterator<Integer> it = hs.iterator();
+        while( it.hasNext()&& (!found) ) {
+              if( it.next().equals(new Integer(BLUFF)) )
+                  found = true;
+        } 
+        crono.off(); 
+        tmphs = crono.textSeeMilis();
+        
+         // teste com TreeSet
+        
+        i = 0; found = false;
+        crono.on();
+        Iterator<Integer> it1 = ts.iterator();
+        while( it1.hasNext()&& (!found) ) {
+              if( it1.next().equals(new Integer(BLUFF)) )
+                  found = true;
+        } 
+        crono.off(); 
+        tmpts = crono.textSeeMilis();
+        
+        
+       // teste com LinkedList
+        /*
+        i = 0; found = false;
+        crono.on();
+        // System.out.println("LKL:" + lkl.size());
+        //tmplkl = "Para " + lkl.size() + " elementos => Infinito !!";
+        while(i < DIM && (!found)) {
+              if( lkl.get(i) .equals(new Integer(BLUFF)) )
+                  found = true;
+              else i++;
+        } 
+        crono.off(); 
+        tmplkl = crono.textSeeMilis();
+        // System.out.println("LinkedList: " + tmplkl);
+       */
+      
+                          
+        // teste com HashMap
+         
+        found = false;
+        Iterator<Integer> valores = hm.values().iterator();
+        crono.on();
+        while( valores.hasNext() && (!found) ) {
+            found = valores.next().equals(new Integer(BLUFF));
+        }
+        crono.off(); 
+        tmphm = crono.textSeeMilis();
+        
+        // teste com TreeMap
+         
+        found = false;
+        Iterator<Integer> vals = tm.values().iterator();
+        crono.on();
+        while( vals.hasNext() && (!found) ) {
+            found = vals.next().equals(new Integer(BLUFF));
+        }
+        crono.off(); 
+        tmptm = crono.textSeeMilis();
+        
+        
+        // resultados
+        return new String("Tempo Vector: " + tmpv + "\n" +
+                          "Tempo ArrayList: " + tmpal + "\n" +
+                         // "Tempo LinkedList: " + tmplkl + "\n" +
+                          "Tempo HashSet: " + tmphs + "\n" +
+                          "Tempo TreeSet: " + tmpts + "\n" +
+                          "Tempo HashMap: " + tmphm + "\n" + 
+                          "Tempo TreeMap: " + tmptm + "\n");
+     }
+     
+          public static String procuraMIntegerCollections2() {
+        Cronometro crono = new Cronometro();
+               
+        // teste com Vector
+        
+        int i = 0; boolean found = false;
+        crono.on();
+        while(i< v.size() && (!found)) {
+              if( v.elementAt(i).equals(new Integer(CHAVE)) )
+                  found = true;
+              else i++;
+        }
+        crono.off(); 
+        tmpv = crono.textSeeMilis();
+        
+        // teste com ArrayList
+        
+        i = 0; found = false;
+        crono.on();
+        while(i< al.size() && (!found)) {
+              if( al.get(i).equals(new Integer(CHAVE)) )
+                  found = true;
+              else i++;
+        } 
+        crono.off(); 
+        tmpal = crono.textSeeMilis();
+        
+         // teste com HashSet
+        
+        i = 0; found = false;
+        crono.on();
+        Iterator<Integer> it = hs.iterator();
+        while( it.hasNext()&& (!found) ) {
+              if( it.next().equals(new Integer(CHAVE)) )
+                  found = true;
+        } 
+        crono.off(); 
+        tmphs = crono.textSeeMilis();
+        
+         // teste com TreeSet
+        
+        i = 0; found = false;
+        crono.on();
+        Iterator<Integer> it1 = ts.iterator();
+        while( it1.hasNext()&& (!found) ) {
+              if( it1.next().equals(new Integer(CHAVE)) )
+                  found = true;
+        } 
+        crono.off(); 
+        tmpts = crono.textSeeMilis();
+        
+        
+       // teste com LinkedList
+        /*
+        i = 0; found = false;
+        crono.on();
+        // System.out.println("LKL:" + lkl.size());
+        //tmplkl = "Para " + lkl.size() + " elementos => Infinito !!";
+        while(i < DIM && (!found)) {
+              if( lkl.get(i) .equals(new Integer(CHAVE)) )
+                  found = true;
+              else i++;
+        } 
+        crono.off(); 
+        tmplkl = crono.textSeeMilis(); 
+        */
+        
+        // System.out.println("LinkedList: " + tmplkl);
+       
+          
+       
+        // teste com HashMap
+         
+        found = false;
+        Iterator<Integer> valores = hm.values().iterator();
+        crono.on();
+        while( valores.hasNext() && (!found) ) {
+            found = valores.next().equals(new Integer(CHAVE));
+        }
+        crono.off(); 
+        tmphm = crono.textSeeMilis();
+        
+        // teste com TreeMap
+         
+        found = false;
+        Iterator<Integer> vals = tm.values().iterator();
+        crono.on();
+        while( vals.hasNext() && (!found) ) {
+            found = vals.next().equals(new Integer(CHAVE));
+        }
+        crono.off(); 
+        tmptm = crono.textSeeMilis();
+        
+        
+        // resultados
+        return new String("Tempo Vector: " + tmpv + "\n" +
+                          "Tempo ArrayList: " + tmpal + "\n" +
+                        //  "Tempo LinkedList: " + tmplkl + "\n" +
+                          "Tempo HashSet: " + tmphs + "\n" +
+                          "Tempo TreeSet: " + tmpts + "\n" +
+                          "Tempo HashMap: " + tmphm + "\n" + 
+                          "Tempo TreeMap: " + tmptm + "\n");
+     }
+ 
+ 
+     public static String procuraMIntegerCollections3() {
+        Cronometro crono = new Cronometro();
+               
+        // teste com Vector
+        
+        crono.on();
+        v.contains(new Integer(BLUFF));
+        crono.off(); 
+        tmpv = crono.textSeeMilis();
+        
+        // teste com ArrayList
+        
+        crono.on();
+        al.contains(new Integer(BLUFF));
+        crono.off(); 
+        tmpal = crono.textSeeMilis();
+        
+        // teste com HashSet
+        
+        crono.on();
+        hs.contains(new Integer(BLUFF));
+        crono.off(); 
+        tmphs = crono.textSeeMilis();
+        
+        // teste com TreeSet
+        
+        crono.on();
+        ts.contains(new Integer(BLUFF));
+        crono.off(); 
+        tmpts = crono.textSeeMilis();
+        
+       // teste com LinkedList
+        /*
+        crono.on();
+        lkl.contains(new Integer(BLUFF));
+        crono.off(); 
+        tmplkl = crono.textSeeMilis();
+        */
+       
+        // teste com HashMap
+       
+        crono.on();
+        hm.containsValue(new Integer(BLUFF));
+        crono.off(); 
+        tmphm = crono.textSeeMilis();
+        
+        // teste com TreeMap
+       
+        crono.on();
+        tm.containsValue(new Integer(BLUFF));
+        crono.off(); 
+        tmptm = crono.textSeeMilis();
+        
+        
+        // resultados
+        return new String("Tempo Vector: " + tmpv + "\n" +
+                          "Tempo ArrayList: " + tmpal + "\n" +
+                          "Tempo HashSet: " + tmphs + "\n" +
+                          "Tempo TreeSet: " + tmpts + "\n" +
+                          //"Tempo LinkedList: " + tmplkl + "\n" +
+                          "Tempo HashMap: " + tmphm + "\n" +
+                          "Tempo TreeMap: " + tmptm + "\n");
+       
+     }
+     
+     public static String iteraMIntegerCollections() {
+        Cronometro crono = new Cronometro();
+        int i = 0;
+        // Iteração
+        // teste com Vector
+        crono.on();
+        for(Enumeration<Integer> e = v.elements(); e.hasMoreElements();) {
+              e.nextElement();
+        }
+        crono.off(); 
+        tmpv = crono.textSeeMilis();
+        
+        // teste com ArrayList
+        crono.on();
+        for(Integer s : al)  { i += s; }
+        crono.off(); 
+        tmpal = crono.textSeeMilis();
+        
+        // teste com HashSet
+        i = 0;
+        crono.on();
+        for(Integer s : hs)  { i += s; }
+        crono.off(); 
+        tmphs = crono.textSeeMilis();
+        
+        // teste com TreeSet
+        i = 0;
+        crono.on();
+        for(Integer s : ts)  { i += s; }
+        crono.off(); 
+        tmpts = crono.textSeeMilis();
+        
+        // teste com LinkedList
+        /*
+        i = 0;
+        crono.on();
+        for(Integer s : lkl)  { i += s; }
+        crono.off(); 
+        tmplkl = crono.textSeeMilis();
+        */
+       
+         // teste com HashMap
+         i = 0;
+        crono.on();
+        for(Integer s : hm.values())  { i += s; }
+        crono.off(); 
+        tmphm = crono.textSeeMilis();
+        
+        // teste com TreeMap
+        i = 0;
+        crono.on();
+        for(Integer s : hm.values())  {i += s; }
+        crono.off(); 
+        tmptm = crono.textSeeMilis();
+
+        
+        // resultados
+        return new String("Tempo Vector: " + tmpv + "\n" +
+                          "Tempo ArrayList: " + tmpal + "\n" +
+                          "Tempo HashSet: " + tmphs + "\n" +
+                          "Tempo TreeSet: " + tmpts + "\n" +
+                         // "Tempo LinkedList: " + tmplkl + "\n" +
+                          "Tempo HashMap: " + tmphm + "\n" +
+                          "Tempo TreeMap: " + tmptm + "\n");
+     }
+
+     public static void main () {
+     
+        System.out.println("Inserção de " + DIM + " Integer \n"+ 
+                            CollectionTester.insereMIntegerCollections() );
+                             
+        // RESULTADO DAS PROCURAS
+        
+        System.out.println("Procura Algoritmica sem sucesso em " + DIM + " Integer \n"+ 
+                            CollectionTester.procuraMIntegerCollections1() );
+        System.out.println("Procura Algoritmica com sucesso em " + DIM + " Integer \n"+ 
+                            CollectionTester.procuraMIntegerCollections2() );                    
+        System.out.println("Procura usando contains() em " + DIM + " Integer \n"+ 
+                            CollectionTester.procuraMIntegerCollections3() );
+       
+       // RESULTADO DAS ITERAÇOES
+        
+        System.out.println("Iteração sobre " + DIM + " de Integer \n"+ 
+                            CollectionTester.iteraMIntegerCollections() );
+                           
+     }      
+  }

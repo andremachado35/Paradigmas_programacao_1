@@ -1,0 +1,39 @@
+
+/**
+ * Write a description of class StackLimComEspera here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+import java.util.*;
+public class StackLimComEspera extends StackLim {
+   //
+   private Queue<Object> fila; // fila de supranumerários
+   
+   public StackLimComEspera() {
+       super();
+       fila = new LinkedList<Object>();
+   }
+   
+    public StackLimComEspera(int dim) {
+       super(dim);
+       fila = new LinkedList<Object>();
+   }
+   
+   // Métodos de Instância
+   public void push(Object elem) throws StackCheiaException,
+                                        FilaEsperaException {
+		try {
+			 super.push(elem);
+		}
+		catch(StackCheiaException e) {
+		    if(fila.size() > dim()/4)
+		      throw FilaEsperaException("Fila Cheia!");
+			fila.offer(elem);
+			throw e; 
+			// ou new StackCheiaException(("Cheia! Fila de Espera!")
+		}
+	
+	}
+}
+
